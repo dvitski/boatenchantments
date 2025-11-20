@@ -5,10 +5,10 @@ import cc.dvitski.enchantedsails.EnchantedSails;
 import cc.dvitski.enchantedsails.entity.BoatAccessor;
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.vehicle.AbstractBoat;
 import net.minecraft.world.entity.vehicle.VehicleEntity;
+import net.minecraft.world.entity.vehicle.boat.AbstractBoat;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.storage.ValueInput;
@@ -35,7 +35,7 @@ public abstract class AbstractBoatMixin extends VehicleEntity implements BoatAcc
     @Shadow
     private boolean inputRight;
     @Unique
-    private static String ITEM_STACK_KEY = ResourceLocation.fromNamespaceAndPath(EnchantedSails.MOD_ID, "stack").toString();
+    private static String ITEM_STACK_KEY = Identifier.fromNamespaceAndPath(EnchantedSails.MOD_ID, "stack").toString();
 
     @NotNull
     @Unique

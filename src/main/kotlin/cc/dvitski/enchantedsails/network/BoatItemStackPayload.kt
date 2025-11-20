@@ -5,7 +5,7 @@ import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.codec.ByteBufCodecs
 import net.minecraft.network.codec.StreamCodec
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.resources.Identifier
 import net.minecraft.world.item.ItemStack
 
 data class BoatItemStackPayload(val id: Int, val stack: ItemStack) : CustomPacketPayload {
@@ -14,7 +14,7 @@ data class BoatItemStackPayload(val id: Int, val stack: ItemStack) : CustomPacke
     }
 
     companion object {
-        val ID: ResourceLocation = ResourceLocation.fromNamespaceAndPath(EnchantedSails.MOD_ID, "boat_item_stack")
+        val ID: Identifier = Identifier.fromNamespaceAndPath(EnchantedSails.MOD_ID, "boat_item_stack")
 
         val STREAM_CODEC: StreamCodec<RegistryFriendlyByteBuf, BoatItemStackPayload> = StreamCodec.composite(
             ByteBufCodecs.VAR_INT, BoatItemStackPayload::id,

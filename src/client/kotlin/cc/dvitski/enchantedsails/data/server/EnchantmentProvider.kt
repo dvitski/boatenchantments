@@ -4,27 +4,27 @@ import cc.dvitski.enchantedsails.enchantment.ESBoatEnchantments
 import cc.dvitski.enchantedsails.tag.ESItemTags
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricCodecDataProvider
-import net.minecraft.Util
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.HolderSet
 import net.minecraft.core.component.DataComponentMap
 import net.minecraft.core.registries.Registries
 import net.minecraft.network.chat.Component
+import net.minecraft.resources.Identifier
 import net.minecraft.resources.ResourceKey
-import net.minecraft.resources.ResourceLocation
+import net.minecraft.util.Util
 import net.minecraft.world.item.enchantment.Enchantment
 import java.util.Optional
 import java.util.concurrent.CompletableFuture
 import java.util.function.BiConsumer
 
 class EnchantmentProvider(output: FabricDataOutput, future: CompletableFuture<HolderLookup.Provider>) : FabricCodecDataProvider<Enchantment>(output, future, Registries.ENCHANTMENT, Enchantment.DIRECT_CODEC) {
-    override fun configure(consumer: BiConsumer<ResourceLocation, Enchantment>, provider: HolderLookup.Provider) {
+    override fun configure(consumer: BiConsumer<Identifier, Enchantment>, provider: HolderLookup.Provider) {
         fun register(key: ResourceKey<Enchantment>,
                      enchantment: Enchantment.EnchantmentDefinition,
                      exclusiveSet: HolderSet<Enchantment> = HolderSet.direct(),
                      effects: DataComponentMap = DataComponentMap.EMPTY
         ) {
-            val location = key.location()
+            val location = key.identifier()
             val description = Component.translatable(Util.makeDescriptionId("enchantment", location))
             consumer.accept(location, Enchantment(description, enchantment, exclusiveSet, effects))
         }
