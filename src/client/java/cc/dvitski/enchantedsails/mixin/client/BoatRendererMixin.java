@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(BoatRenderer.class)
-public abstract class BoatRendererMixin {
+abstract class BoatRendererMixin {
     @Shadow
     @Final
     private EntityModel<BoatRenderState> model;

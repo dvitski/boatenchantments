@@ -12,7 +12,7 @@ import net.minecraft.world.phys.HitResult;
 import org.spongepowered.asm.mixin.Mixin;
 
 @Mixin(BoatItem.class)
-public class BoatItemMixin {
+abstract class BoatItemMixin {
     @WrapMethod(method = "getBoat")
     private AbstractBoat onPlaceBoat(Level level, HitResult hit, ItemStack stack, Player player, Operation<AbstractBoat> original) {
         AbstractBoat boat = original.call(level, hit, stack, player);

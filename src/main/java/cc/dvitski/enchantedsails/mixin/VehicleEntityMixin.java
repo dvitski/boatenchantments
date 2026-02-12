@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(VehicleEntity.class)
-public class VehicleEntityMixin {
+abstract class VehicleEntityMixin {
     @WrapOperation(
             method = "destroy(Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/world/item/Item;)V",
             at = @At(

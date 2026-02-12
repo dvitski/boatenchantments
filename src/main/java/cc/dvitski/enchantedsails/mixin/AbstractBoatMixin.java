@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 @Mixin(AbstractBoat.class)
-public abstract class AbstractBoatMixin extends VehicleEntity implements BoatAccessor {
+abstract class AbstractBoatMixin extends VehicleEntity implements BoatAccessor {
     @Shadow
     private boolean inputUp;
     @Shadow
@@ -35,7 +35,7 @@ public abstract class AbstractBoatMixin extends VehicleEntity implements BoatAcc
     @Shadow
     private boolean inputRight;
     @Unique
-    private static String ITEM_STACK_KEY = Identifier.fromNamespaceAndPath(EnchantedSails.MOD_ID, "stack").toString();
+    private static final String enchantedsails$ITEM_STACK_KEY = Identifier.fromNamespaceAndPath(EnchantedSails.MOD_ID, "stack").toString();
 
     @NotNull
     @Unique
@@ -53,12 +53,12 @@ public abstract class AbstractBoatMixin extends VehicleEntity implements BoatAcc
     @Inject(method = "addAdditionalSaveData", at = @At("TAIL"))
     private void onSave(ValueOutput values, CallbackInfo ci) {
         ItemStack stack = this.getItemStack();
-        values.store(ITEM_STACK_KEY, ItemStack.OPTIONAL_CODEC, stack);
+        values.store(enchantedsails$ITEM_STACK_KEY, ItemStack.OPTIONAL_CODEC, stack);
     }
 
     @Inject(method = "readAdditionalSaveData", at = @At("TAIL"))
     private void onRead(ValueInput values, CallbackInfo ci) {
-        values.read(ITEM_STACK_KEY, ItemStack.CODEC).ifPresent(this::setItemStack);
+        values.read(enchantedsails$ITEM_STACK_KEY, ItemStack.CODEC).ifPresent(this::setItemStack);
     }
 
     @ModifyVariable(method = "controlBoat", at = @At(value = "STORE", ordinal = 0))
